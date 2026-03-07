@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = "YOUR_DOCKERHUB_USERNAME/scientific-calculator"
+        DOCKER_IMAGE = "chaitanya020403/scientific-calculator"
         DOCKER_TAG   = "latest"
     }
 
