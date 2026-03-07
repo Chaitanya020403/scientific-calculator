@@ -1,0 +1,36 @@
+---
+- name: Deploy Scientific Calculator
+  hosts: local
+  become: false
+
+  vars:
+    docker_image: "YOUR_DOCKERHUB_USERNAME/scientific-calculator"
+    container_name: "scientific-calculator"
+
+  tasks:
+
+    - name: Pull latest Docker image
+      command: docker pull {{ docker_image }}:latest
+
+    - name: Stop existing container (if running)
+      command: docker stop {{ container_name }}
+      ignore_errors: yes
+
+    - name: Remove old container (if exists)
+      command: docker rm {{ container_name }}
+      ignore_errors: yes
+
+    - name: Run new container
+      command: >
+        docker run -dit
+        --name {{ container_name }}
+        {{ docker_image }}:latest
+      register: run_result
+
+    - name: Show container status
+      command: docker ps -f name={{ container_name }}
+      register: status
+
+    - name: Print status
+      debug:
+        msg: "{{ status.stdout }}"
