@@ -6,7 +6,7 @@ public class Main {
 
     public static void main(String[] args) {
         ScientificCalculator calc = new ScientificCalculator();
-        Scanner scanner = new Scanner(System.in)
+        Scanner scanner = new Scanner(System.in);
         boolean running = true;
 
         System.out.println("========================================");
